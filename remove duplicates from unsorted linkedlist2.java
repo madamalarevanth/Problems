@@ -8,6 +8,8 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+//without using buffer
+
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         if(head== null)
