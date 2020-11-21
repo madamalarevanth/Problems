@@ -1,0 +1,37 @@
+step1:  Input and call util(s,k)
+def util(s,k):
+	step2: #count uniques 
+		u=0,count = [0]*26
+		for i in range(len(s)):
+			if( count[ s[i]-s[‘a’]]) ==0:
+				u+=1
+			count[ s[i]-s[‘a’]] +=1
+	step3: if uniques less than required then end with -1
+		if(u<k):
+			return -1
+		elif(u==k):
+			return len(s),s
+
+	step 4: if that not the case then 
+		#initiate temp vars for sliding window and answers array
+		start,end = 0,0
+		size,max_size = 0,0
+		ans = []
+		
+	step 5: run sliding window algo
+		for i in range(n):
+			end = i 
+			count[ s[i]-s[‘a’]] +=1
+
+			while(Uniquesoverflow(count,k) == true):
+				count[s[start]-s[a]) - =1
+				start+=1
+				
+			size = end-start+1
+			if(size>= max_size):
+				if(size>max_size):
+					ans= []
+					ans.append(s[start:end+1])
+				elif(size == max_size):
+					ans.append(s[start:end+1])
+		return ans,max_size
