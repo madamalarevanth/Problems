@@ -1,0 +1,50 @@
+class Solution:
+    def knows(M,i,j):
+        print(M)
+        return M[i][j]
+        
+    def findCelebrity(self,M,n):
+        
+        #base case 
+        if n==1:
+            return 0
+        
+        id = self.findCelebrity(M,n-1)
+        
+        #if there are no celebrities till n-1 that means n is celeb
+        if id == -1:
+            return n-1
+        
+        # If the celebrity knows the nth person
+        elif( self.knows(M,id,n-1) and not self.knows(M,n-1,id)):
+            return n-1
+        
+        # If the nth person knows the celebrity then return the id  
+        elif ( self.knows(M,n - 1, id) and not self.knows(M,id, n - 1)):  
+            return id
+        
+        # If there is no celebrity  
+        return - 1
+        
+    def celebrity(self, M, n):
+       
+        id = self.findCelebrity(M,n)
+       
+        #if no celebrity
+        if(id == -1):
+            return id
+        #if not le check if the celebrity is an actual celebrity
+        else:
+            c1,c2 = 0,0 
+            # c1 is people who know celebrity, c2 is how many people knows celebrity
+            
+            for i in range(n):
+                c1 += self.knows(M,id,i)
+                c2 += self.knows(M,i,id)
+            
+            #condition of celeb is he knows noOne but known by everyone
+            if c1 == 0 and c2 == n-1: 
+                return id
+
+            #if not he is not a celeb so no celeb
+            return -1
